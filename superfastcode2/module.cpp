@@ -34,14 +34,18 @@ public:
     YieldCurve(double x) : t(x) {
         for (int i = 0; i < 100; i++) {
             vectorD.push_back(i);
+
+            vectorPets.push_back(Pet("Oreo"));
         }
     }
     const std::string& getName() const { return name; }
     const double getT() const { return t; }
     std::vector<double> getVector() const { return vectorD; }
+    std::vector<Pet> getPets() const { return vectorPets; }
 
 private:
     std::vector<double> vectorD;
+    std::vector<Pet> vectorPets;
     double t;
     std::string name;
 };
@@ -63,7 +67,8 @@ PYBIND11_MODULE(superfastcode2, m) {
         .def(py::init<double>())
         .def("getT", &YieldCurve::getT)
         .def("getName", &YieldCurve::getName)
-        .def("getVector", &YieldCurve::getVector);
+        .def("getVector", &YieldCurve::getVector)
+        .def("getPets", &YieldCurve::getPets);
 
 
 #ifdef VERSION_INFO
